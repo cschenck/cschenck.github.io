@@ -1,0 +1,659 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%THIS FILE IS BASED ON THE TEMPLATE FROM "http://www.tedpavlic.com/post_resume_cv_latex_example.php"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+\usepackage{verbatim}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+% Simpler bibsections for CV sections
+% (thanks to natbib for inspiration)
+%
+% * For lists of references with hanging indents and no numbers:
+%
+%   \begin{bibsection}
+%       \item ...
+%   \end{bibsection}
+%
+% * For numbered lists of references (with hanging indents):
+%
+%   \begin{bibenum}
+%       \item ...
+%   \end{bibenum}
+%
+%   Note that bibenum numbers continuously throughout. To reset the
+%   counter, use
+%
+%   \restartlist{bibenum}
+%
+%   at the place where you want the numbering to reset.
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newlist{bibsection}{itemize}{3}
+\setlist[bibsection]{label=,leftmargin=\bibhang,%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\newlist{bibenum}{enumerate}{3}
+\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\let\oldendbibenum\endbibenum
+\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+\let\oldendbibsection\endbibsection
+\def\endbibsection{\oldendbibsection\vspace{-.6\baselineskip}}
+\makeatother
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+\usepackage{url}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}%
+         \end{minipage}%
+	\vspace{-1.3\baselineskip}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{%
+    \pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \hspace{-\marginparwidth}\rule{\columnwidth+\marginparwidth}{1pt}\newline%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+\renewcommand{\subsection}[1]{%
+    \pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\csname preFixOuterList#1\endcsname\let\oldItem\item\def\item{\pagebreak[2]\oldItem}}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+\newcommand{\sbullet}{\,\begin{picture}(1,1)(0,-3)\circle*{3}\end{picture}\ }
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\sbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\sbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\sbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\sbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.9\baselineskip}\pagebreak[3]}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading[\emph{Curriculum vitae}]{Connor R. Schenck}
+
+\section{Office \newline Address}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table. Table is one row made up of three parboxes. The left
+%       parbox has address info, the middle parbox has a vertical bar,
+%       and the right parbox has phone and electronic contact
+%       information.
+%
+% MACROS: \rcollength is the width of the right column of the table
+%             (adjust it to your liking; default is 1.85in).
+%         \spacewidth is width of area between left and right boxes.
+%         \spacechar is character used to produce perforated vertical
+%             boundary between boxes.
+%
+\newlength{\rcollength}\setlength{\rcollength}{2.8in}%
+\newlength{\spacewidth}\setlength{\spacewidth}{20pt}
+\newcommand\spacechar{$|$}
+%
+\vspace{1mm}
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
+
+% Address box
+\parbox{\textwidth-\rcollength-\spacewidth}{%
+Computer Science and Engineering\\
+University of Washington \\
+185 Stevens Way \\
+Seattle WA 98195-2350}
+
+& \parbox{\spacewidth}{} &
+
+% Non-snail-mail contact information
+\parbox{\rcollength}{%
+\begin{tabular}{r l}
+\textit{Phone}:& \hspace{-0.10in}(515) 257-6335 \\
+\textit{E-mail}:& \hspace{-0.10in}schenckc@cs.washington.edu\\
+\textit{URL}:& \hspace{-0.10in}{\small\url{homes.cs.washington.edu/~schenckc}}\\
+\end{tabular}}
+
+
+\end{tabular}
+
+\section{Research Interests}
+
+\textbf{Artificial Intelligence with an emphasis on learning and adaptation} including: Machine Learning, Robotics, Developmental Robotics, Computational Perception, Robotic Manipulation, Autonomous Systems, Humanoid Robotics, and Artificial Intelligence for Video Games.
+
+
+\section{Education}
+
+\textbf{University of Washington} \hfill Seattle, WA
+
+\begin{outerlist}
+
+\item[] \emph{Doctor of Philosophy} \hfill {Summer 2018}
+        \begin{innerlist}
+	\item Major: Computer Science \& Engineering
+        \item Thesis Field: Robotics
+        \item Advisor: Dr. Dieter Fox
+        \end{innerlist}
+
+\end{outerlist}
+
+\blankline
+
+\textbf{Iowa State University of Science and Technology} \hfill Ames, IA
+\begin{outerlist}
+
+\item[] \emph{Master of Science} \hfill {Summer 2013}
+        \begin{innerlist}
+	\item Major: Computer Science
+	\item Co-Major: Human-Computer Interaction
+        \item Thesis Field: Developmental Robotics
+        \item Advisor: Dr. Alexander Stoytchev
+        \end{innerlist}
+
+\halfblankline
+
+\item[] \emph{Bachelor of Science} \hfill {Fall 2011}
+        \begin{innerlist}
+	\item Major: Computer Science
+        \item Emphasis: Artificial Intelligence and Machine Learning
+        \item GPA: 3.92/4.0 \emph{Summa Cum Laude}
+        \end{innerlist}
+
+\end{outerlist}
+
+\section{Honors \& Awards}
+
+\begin{innerlist}
+	\item National Science Foundation Graduate Research Fellow
+	\item Goldwater Scholar
+	\item President's Leadership Scholarship
+	\item President's Award for Competitive Excellence
+	\item H Stuart Kuyper Engineering Endowment Fund
+	\item Dean's List
+	\item Highest 2\% ISU Engineering Freshmen
+\end{innerlist}
+
+\section{Publications \& Presentations}
+
+\begin{outerlist}
+
+\item[] \textbf{PhD Thesis}
+	\begin{innerlist}
+		\item \textbf{Schenck, C.}, ``Liquids \& Robots: An Investigation of Techniques for Robotic Interaction with Liquids,'' PhD Thesis, Paul G. Allen School of Computer Science \& Engineering, University of Washington, Seattle, WA, August 2018.
+	\end{innerlist}
+
+\halfblankline
+
+\item[] \textbf{Master's Thesis}
+	\begin{innerlist}
+		\item \textbf{Schenck, C.}, ``Intelligence Tests for Robots: Solving Perceptual Reasoning Tasks with a Humanoid Robot,'' M.S. Thesis, Department of Computer Science \& Human-Computer Interaction Program, Iowa State University, Ames, IA, July 2013.
+	\end{innerlist}
+
+\halfblankline
+
+\item[] \textbf{Refereed Journal Articles}
+	\begin{innerlist}
+	    \item \textbf{Schenck, C.}, and Fox, D, ``Perceiving and Reasoning About Liquids Using Fully-Convolutional Networks,'' \emph{International Journal of Robotics Research (IJRR)}, Vol.~37, No.~4--5, pp.~452--471, April, 2018.
+		\item \textbf{Schenck, C.}, Sinapov, J., Johnston, J., and Stoytchev A., ``Which Object Fits Best? Solving Matrix Completion Tasks with a Humanoid Robot,'' \emph{IEEE Transactions on Autonomous Mental Development}, Vol.~6, No.~3, pp.~226--240, 2014.
+		\item Sinapov, J., \textbf{Schenck, C.}, Staley, K., Sukhoy, V., and Stoytchev A., ``Grounding Semantic Categories in Behavioral Interactions: Experiments with 100 Objects,'' \emph{Journal of Robotics and Autonomous Systems}, Vol.~62, No.~5, pp.~632--645, 2014.	
+		\item \textbf{Schenck, C.}, Sinapov, J., and Stoytchev, A., ``Which Object Comes Next? Grounded Order Completion by a Humanoid Robot,'' \emph{Journal of Cybernetics and Information Technologies}, Vol.~12, No.~3, pp. 5--16, 2012.
+		\item Sinapov, J., Bergquist, T., \textbf{Schenck, C.}, Ohiri, U., Griffith, S., and Stoytchev, A., ``Interactive Object Recognition Using Proprioceptive and Auditory Feedback,'' \emph{International Journal of Robotics Research}, Vol. 30, No. 10, pp. 1250--1262, 2011.
+	\end{innerlist}
+
+\halfblankline
+
+\item[] \textbf{Conference Articles (peer reviewed)}
+	\begin{innerlist}
+	\item \textbf{Schenck, C.}, and Fox, D., ``SPNets: Differentiable Fluid Dynamics for Deep Neural Networks,'' In \emph{Proceedings of the Second Conference on Robot Learning (CoRL)}, Zurich, Switzerland, October 29--31, 2018.
+	\item \textbf{Schenck, C.}, Tompson, J., Fox, D., and Levine, S., ``Learning Robotic Manipulation of Granular Media,'' In \emph{Proceedings of the First Conference on Robot Learning (CoRL)}, Mountain View, CA, USA, November 13--15, 2017.
+	\item \textbf{Schenck, C.}, and Fox, D, ``Reasoning About Liquids via Closed-Loop Simulation,'' In \emph{Robotics: Science \& Systems (RSS)}, Cambridge, MA, USA, July 12--16, 2017.
+	\item \textbf{Schenck, C.}, and Fox, D, ``Visual Closed-Loop Control for Pouring Liquids,'' In \emph{Proceedings of the International Conference on Experimental Robotics (ICRA)}, Singapore, May 29 -- June 3, 2017.
+	\item \textbf{Schenck, C.}, and Fox, D, ``Towards Learning to Perceive and Reason About Liquids,'' In \emph{Proceedings of the International Symposium on Experimental Robotics (ISER)}, Tokyo, Japan, October 3--6, 2016.
+	\item Sinapov, J., \textbf{Schenck, C.}, and Stoytchev, A, ``Learning Relational Object Categories Using Behavioral Exploration and Multimodal Perception,'' In \emph{Proceedings of the 2014 IEEE International Conference on Robotics and Automation (ICRA)}, Hong Kong, China, May 31 -- June 7, 2014.
+	\end{innerlist}
+
+\halfblankline
+
+\item[] \textbf{Workshop Presentations \& Articles (peer reviewed)}
+	\begin{innerlist}
+	\item \textbf{Schenck, C.}, and Fox, D., ``SPNets: Modeling Position Based Fluids using Smooth Particle Networks,'' In \emph{Proceedings of Robotics Science \& Systems (RSS) 2018 Workshop Learning and Inference in Robotics: Integrating Structure, Priors and Models}, Pittsburgh, PA, USA, June 29, 2018.
+	\item \textbf{Schenck, C.}, and Fox, D., ``Detection and Tracking of Liquids with Fully Convolutional Networks,'' In \emph{Proceedings of Robotics Science \& Systems (RSS) 2016 Workshop Are the Skeptics Right? Limits and Potentials of Deep Learning in Robotics}, Ann Arbor, Michigan, USA, June 18, 2016.
+	\item \textbf{Schenck, C.}, and Sinapov, A., ``The Object Pairing and Matching Task: Toward Montessori Tests for Robots,'' In \emph{Proceedings of the Humanoids 2012 Workshop on Developmental Robotics}, Okaka, Japan, November 29, 2012.
+	\item \textbf{Schenck, C.}, Sinapov, J., and Stoytchev, A., ``Which Object Comes Next? Grounded Order Completion by a Humanoid Robot,'' \emph{AIMSA Workshop: Advances in Robot Learning and Human-Robot Interaction}, Varna, Bulgaria, September 12, 2012.
+	\item Bergquist, T., \textbf{Schenck, C.}, Ohiri, U., Sinapov, J., Griffith, S., and Stoytchev, A., ``Interactive Object Recognition Using Proprioceptive Feedback,'' In \emph{Proceedings of the IROS 2009 Workshop: Semantic Perception for Mobile Manipulation}, St.~Louis, MO, October 15, 2009.
+	\end{innerlist}
+
+\halfblankline
+
+\item[] \textbf{Symposium Presentations \& Invited Talks}
+	\begin{innerlist}
+	    \item \textbf{Schenck, C.}, ``Towards Perceiving and Manipulating Liquids with Real Robots,'' \emph{Invited Talk}, University of California at Berkeley, Berkeley, California, April 21, 2017.
+		\item \textbf{Schenck, C.}, ``Object Recognition Using Proprioceptive and Auditory Feedback,'' \emph{Iowa State University Undergraduate Research Symposium}, April 19, 2011.
+		\item Bergquist, T., \textbf{Schenck, C.}, and Ohiri, U., ``Interactive Object Recognition Using Proprioceptive and Auditory Feedback,'' \emph{Iowa State University REU Research Symposium}, Ames, IA, July 31, 2009.
+	\end{innerlist}
+
+\end{outerlist}
+
+\section{Research Experience}
+
+\textbf{Nvidia Corporation} \hfill Seattle, WA
+\vspace{-0.17cm}
+\begin{outerlist}
+
+\item[] \emph{Research Intern} \hfill Winter 2018 (in progress)\\
+	\emph{Robotics Research Lab}\vspace{-0.1cm}
+        \begin{innerlist}
+		\item Conducted research in robotics on combining deep learning with fluid simulation.
+		\item Developed new particle convolution layer for performing convolutions on unordered particle sets.
+		\item Constructed a fluid simulator using only deep neural networks.
+        \end{innerlist}
+
+\end{outerlist}
+
+\blankline
+
+\textbf{Google, Inc.} \hfill Mountain View, CA
+\vspace{-0.17cm}
+\begin{outerlist}
+
+\item[] \emph{Software Engineering Intern} \hfill Winter/Spring 2017\\
+	\emph{Google Brain}\vspace{-0.1cm}
+        \begin{innerlist}
+		\item Conducted research in robotics focusing on applying deep learning to robotic tasks.
+		\item Published the results of the research in a peer-reviewed academic conference.
+        \end{innerlist}
+
+\item[] \emph{Software Engineering Intern} \hfill Summer 2015\\
+	\emph{Google X}\vspace{-0.1cm}
+        \begin{innerlist}
+		\item Created a tool to help analyze the performance of various modules of the self-driving car's codebase.
+		\item Applied machine learning to detect yielding of other cars to the self-driving car.
+        \end{innerlist}
+
+\end{outerlist}
+
+\blankline
+
+\textbf{Iowa State University} \hfill Ames, IA 
+\vspace{-0.17cm}
+\begin{outerlist}
+\item[] \emph{Software Developer} \hfill Summer 2011 to Spring 2012\\
+	\emph{Department of Statistics}\vspace{-0.1cm}
+        \begin{innerlist}
+		\item Implemented mutli-byte character support in a text coding application
+		\item Debugged the large code-base collaboratively made with many other developers and released the application
+        \end{innerlist}
+
+\item[] \emph{Research Assistant} \hfill Summer/Fall 2010\\
+	\emph{Virtual Reality Applications Center}
+        \begin{innerlist}
+		\item Developed a tool tracking application for factory workers
+		\item Worked with factory workers to incorporate feedback
+        \end{innerlist}
+
+\item[] \emph{Research Experience for Undergraduates} \hfill Summer 2009\\
+	\emph{Department of Human-Computer Interaction}
+        \begin{innerlist}
+		\item Chose a research topic and created a research question
+		\item Conducted research in Developmental Robotics
+		\item Coordinated tasks between group members
+		\item Wrote and presented a report on the research 
+        \end{innerlist}
+
+\end{outerlist}
+
+
+
+\section{Teaching Experience}
+
+\textbf{Teaching Assistant}
+
+\textbf{University of Washington} \hfill Seattle, WA
+
+\begin{outerlist}
+
+\item[] \emph{CSE 455: Computer Vision} \hfill Spring 2018 
+        \begin{innerlist}
+	\item Aided students from a wide variety of backgrounds in learning concepts in computer vision.
+	\item Provided feedback to students via in class activities, assignments, and tests.
+        \end{innerlist}
+
+\item[] \emph{CSE 415: Introduction to AI for Non-Majors} \hfill Fall 2017 
+        \begin{innerlist}
+	\item Aided students from a wide variety of backgrounds in learning concepts in AI.
+	\item Provided feedback to students via in class activities, assignments, and tests.
+        \end{innerlist}
+
+\end{outerlist}
+
+\blankline
+
+\textbf{Iowa State University} \hfill Ames, IA
+
+\begin{outerlist}
+
+\item[] \emph{ComS/HCI 575x: Computational Perception} \hfill Spring 2010 
+        \begin{innerlist}
+	\item Assisted students in understanding problems in Computer Vision through weekly office 
+ hours and appointments
+        \end{innerlist}
+
+\halfblankline
+
+\item[] \emph{CprE 185: Introduction to Programming in C} \hfill Fall 2009 
+        \begin{innerlist}
+	\item Designed lessons and projects for students in order to enhance understanding of concepts
+	\item Aided students in understanding the basics of C programming
+        \end{innerlist}
+
+\halfblankline
+
+\item[] \emph{ComS 227: Introduction to Object-Oriented Programming} \hfill Spring 2009 
+        \begin{innerlist}
+	\item Aided students in understanding concepts of object-oriented programming
+	\item Proctored and graded exams, quizes, and homeworks
+        \end{innerlist}
+
+\end{outerlist}
+
+\section{Technical Skills}
+
+\begin{outerlist}
+
+\item[] \textbf{Programming Languages, Libraries and Software Applications}
+        \begin{innerlist}
+		\item C, C++, Java, Matlab, Cuda, Unix shell scripting, \LaTeX, Linux, Windows, GNU make, OpenCV, Matlab Image Processing Toolkit, Java Swing, Microsoft Foundation Classes, Robot Operating System, Weka, Scikit-Learn, PyTorch, Caffe, Tensorflow
+        \end{innerlist}
+
+\halfblankline
+
+\item[] \textbf{Technical Training \& Proficiency}
+        \begin{innerlist}
+		\item Human-Computer Interaction, Artificial Intelligence, Machine Learning, Computer Vision, Computational Perception, Algorithms, Probability \& Statistics, Computational Randomness, Probabilistic Robotics, Robotic Manipulation and Planning
+        \end{innerlist}
+
+\end{outerlist}
+
+\section{Leadership}
+
+\begin{outerlist}
+
+\item[] \emph{Iowa State University Game Design Competition} \hfill Fall 2010/Spring 2011
+        \begin{innerlist}
+		\item Lead a team of 11 developers, artists, and business majors to design and implement a video game
+		\item Won first place (\$10,000) in the PC and Console category
+        \end{innerlist}
+
+\halfblankline
+
+\item[] \emph{Presiden's Leadership Class} \hfill Fall 2008
+        \begin{innerlist}
+		\item Group of 30 freshmen selected to meet with President Geoffroy of Iowa State University Once per week
+		\item Developed leadership skills
+        \end{innerlist}
+
+\end{outerlist}
+
+\begin{comment}
+\section{Notes for Jim}
+
+\begin{outerlist}
+
+	\item I don't really like the last section here, but I want that information to stay, is there a good way to put that information somewhere else in the document?
+	\item Multiple sections (Teaching Experience, Research Experience, and Leadership) have bullet points after entry that explain what I did (e.g., after ComS/HCI 575x it says ``Assisted students in understanding...''). When I was looking at other people's cv's, some people did that and some people did not. Should I have those bullet points or get rid of all/some of them?
+	\item In presentations, the second one from the bottom was Taylor's presentation in St. Louis. I helped him prepare it and I was one of the main authors on the paper, but should I put that down since I didn't actually present it? Does ``Presentations'' mean presentations that I've given or times when my work has been presented?
+	\item The Honors \& Awards section feels weird being as close to the top as it is, but this is the only way in which I could think of to include my NSF fellowship near the top. Is there a better way to do this? Maybe I should put it under research experience?
+	\item One final note, the second listed publication and the first presentation are both dated in the future, but since they will have happened by the time I send this I wanted to include them so I didn't forget.
+
+\end{outerlist}
+\end{comment}
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic,
+% modified by Connor R. Schenck 2012
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
